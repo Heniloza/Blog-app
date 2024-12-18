@@ -35,7 +35,7 @@ const PostDetails = () => {
         alt=""
         className="w-[70vw] h-[60vh] mx-auto mt-8"
       />
-      <p className="mt-8 ">
+      <p className="mt-8 md:px-44 px-8">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam,
         officiis, dignissimos labore iusto quaerat qui reprehenderit at suscipit
         fuga fugit quidem? Cum tempora dolor nam placeat sequi quas facere iure?
@@ -54,14 +54,14 @@ const PostDetails = () => {
         cum! Voluptas ea voluptatem alias provident tempore asperiores
         voluptatum? Doloribus impedit sit commodi enim.
       </p>
-      <div className="flex items-center mt-8 space-x-4 font-semibold">
+      <div className="flex items-center mt-8 space-x-4 font-semibold md:px-44 px-8">
         <p>categories:</p>
         <div className="flex justify-center items-center space-x-2 ">
           <div className="bg-gray-300 rounded-lg px-3 py-1 ">Tech </div>
           <div className="bg-gray-300 rounded-lg px-3 py-1 ">Ai </div>
         </div>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col md:px-44 px-8">
         <h3 className="mt-6 mb-4 font-semibold ">Comments:</h3>
         {/* comments */}
         <div className=" px-2 py-2 bg-green-200 rounded-lg ">
@@ -88,7 +88,8 @@ const PostDetails = () => {
             <h3 className="font-bold text-gray-600 ">@lalitsharma</h3>
             <div className="flex justify-center items-center space-x-4 ">
               <p className="text-gray-500">16/12/2024</p>
-              <p className="text-gray-500">19:32</p>
+              <p className="text-gray-500">19:32  
+              </p>
               <div className="flex items-center justify-center space-x-2">
                 <p>
                   <BiEdit />
@@ -100,6 +101,13 @@ const PostDetails = () => {
             </div>
           </div>
           <p className="px-4 mt-2 ">Nice information</p>
+        </div>
+        <div>
+          {/* write a comment */}
+          <div className="w-full flex flex-col mt-4 md:flex-row">
+            <input type="text" placeholder="Write a comment" className="md:w-[80%] outline-none px-4 mt-4 md:mt-0"/>
+            <button className="bg-black text-white px-4 py-2 md:w-[20%] mt-4 md:mt-0">Add Comment</button>
+          </div>
         </div>
       </div>
       <Footer />

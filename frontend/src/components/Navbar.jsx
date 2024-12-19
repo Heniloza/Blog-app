@@ -6,7 +6,7 @@ const Navbar = () => {
     const user = false;
   return (
     <div className='flex items-center justify-between px-6 md:px-[200px] py-4 '>
-        <h1 className='text-lg font-extrabold md:text-xl'><Link to="/">Blog Adda</Link></h1>
+        <h1 className='text-lg font-extrabold md:text-xl mr-5 md:mr-5'><Link to="/">Blog Adda</Link></h1>
         <div className='flex items-center justify-center space-x-8'>
             <p><BsSearch /></p>
             <input type="text" placeholder='Search a post' className='outline-none ox-3 py-2'/>

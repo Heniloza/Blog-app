@@ -14,24 +14,24 @@ const EditPost = () => {
   };
   const deleteCategory = (i) => {
     let updatedCats = [...cats];
-    updatedCats.splice(i);
+    updatedCats.splice(i,1);
     setCats(updatedCats);
   };
   return (
     <div>
       <Navbar />
       <div className="px-6 md:px-[200px] mt-4">
-        <h1 className="font-bold md:text-2xl text-xl mt-8">Create a Post</h1>
+        <h1 className="font-bold md:text-2xl text-xl mt-8">Update a Post</h1>
         <form
           action=""
           className="w-full flex flex-col space-y-4 md:space-y-8 mt-4"
         >
           <input
             type="text"
-            placeholder="Enter Post Title"
+            placeholder="Enter new Title"
             className="px-4 py-2 outline-none"
           />
-          <input type="file" placeholder="Upload Image" className="px-4" />
+          <input type="file" placeholder="Upload new Image" className="px-4" />
           <div className="flex flex-col">
             <div className="flex items-center space-x-4 md:space-x-8">
               <input
@@ -71,11 +71,11 @@ const EditPost = () => {
           <textarea
             rows={15}
             cols={30}
-            placeholder="Enter Post Description"
+            placeholder="Edit Post Description"
             className="px-4 py-2 outline-dashed border-1"
           ></textarea>
           <button className="bg-black w-full md:w-[20%] mx-auto text-white font-semibold">
-            Create
+            Update
           </button>
         </form>
       </div>

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
-const HomePage = () => {
+const ProfilePosts = () => {
   return (
-    <div className="w-full flex mt-16 space-x-2 ml-24">
+    <div className="w-full flex mt-16 space-x-2 ml-24 ">
       {/* {left} */}
       <div className="w-[25%] h-[170px] flex justify-center items-center sm:w-[40%] sm:h-[170px]">
         <img
@@ -28,7 +28,7 @@ const HomePage = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default ProfilePosts

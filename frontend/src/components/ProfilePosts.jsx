@@ -24,7 +24,7 @@ const ProfilePosts = () => {
             </div>
         </div>
         <p className="text-sm md:text-lg">
-            In this days we are surrounded getElementById artificial intellingence Like voice assistant , chatGpt,gemini etc. we are using Ai for small-small tasks.Here are 10 uses of AI in our daily life to make your life easy and work fastely in this ai driven life
+            In this days we are surrounded getElementById artificial intellingence Like voice assistant , chatGpt,gemini etc.Here are 10 uses of AI in our daily life to make your life easy and work fastely in this ai driven life
         </p>
       </div>
     </div>

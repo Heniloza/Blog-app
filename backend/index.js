@@ -1,6 +1,10 @@
 import express from 'express';
 import mongoose  from 'mongoose';
 import dotenv from 'dotenv'
+//cookie parser
+import cookieParser from 'cookie-parser';
+import verifyToken from './verifyToken.js';
+//ROUTES
 import authRouter from './routes/auth.js'
 import userRouter from './routes/users.js'
 import postRouter from './routes/posts.js'
@@ -13,6 +17,9 @@ const app = express();
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
+
+//Routes
 app.use("/api/auth",authRouter);
 app.use("/api/user",userRouter);
 app.use("/api/posts",postRouter);

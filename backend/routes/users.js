@@ -3,12 +3,13 @@ import USER from "../models/user.js";
 import bcrypt from 'bcrypt';
 import POST from '../models/post.js'
 import COMMENT from '../models/comment.js'
+import verifyToken from "../verifyToken.js";
 
 const router = express.Router();
 
 
 //UPDATE
-router.put("/:id",async(req,res)=>{
+router.put("/:id",verifyToken,async(req,res)=>{
     try {
         if(req.body.password){
             const salt = await bcrypt.genSalt(10);
@@ -21,7 +22,7 @@ router.put("/:id",async(req,res)=>{
     }
 });
 //DELETE
-router.delete("/:id",async(req,res)=>{
+router.delete("/:id",verifyToken,async(req,res)=>{
     try {
        await USER.findByIdAndDelete(req.params.id);
        await POST.deleteMany({userId:req.params.id});

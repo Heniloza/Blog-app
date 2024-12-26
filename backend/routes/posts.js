@@ -1,13 +1,11 @@
 import express from "express";
-import USER from "../models/user.js";
-import bcrypt from 'bcrypt';
 import POST from '../models/post.js'
-import COMMENT from '../models/comment.js'
+import verifyToken from "../verifyToken.js";
 
 const router = express.Router();
 
 //CREATE
-router.post("/create",async(req,res)=>{
+router.post("/create",verifyToken,async(req,res)=>{
     try {
         const newPost = new POST(req.body);
         const savedPost = await newPost.save();
@@ -18,7 +16,7 @@ router.post("/create",async(req,res)=>{
 });
 
 //UPDATE
-router.put("/:id",async(req,res)=>{
+router.put("/:id",verifyToken,async(req,res)=>{
     try {
         const updatedUser = await POST.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
         res.status(200).json(updatedUser)
@@ -27,7 +25,7 @@ router.put("/:id",async(req,res)=>{
     }
 });
 //DELETE
-router.delete("/:id",async(req,res)=>{
+router.delete("/:id",verifyToken,async(req,res)=>{
     try {
        await POST.findByIdAndDelete(req.params.id);
        res.status(200).json("POST HAS BEEN DELTED");

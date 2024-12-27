@@ -1,9 +1,9 @@
 import express from 'express';
 import mongoose  from 'mongoose';
 import dotenv from 'dotenv'
+import cors from 'cors'
 //cookie parser
 import cookieParser from 'cookie-parser';
-import verifyToken from './verifyToken.js';
 //ROUTES
 import authRouter from './routes/auth.js'
 import userRouter from './routes/users.js'
@@ -17,6 +17,7 @@ const app = express();
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({origin:"http://localhost:5173",credentials:true}))
 app.use(cookieParser())
 
 //Routes

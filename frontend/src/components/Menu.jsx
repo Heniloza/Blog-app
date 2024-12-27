@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import {Link} from 'react-router-dom'
 
 const Menu = () => {
-  const user = true;
+  const {user} = useContext(UserContext);
   return (
     <div className="bg-black w-[200px] flex flex-col items-start absolute top-12 right-6 md:right-32 p-4 rounded-md space-y-4">
       {/* if no users */}
       {!user && (
-        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">Login</h3>
+        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"><Link to="/login">Login</Link></h3>
       )}
       {!user && (
-        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">Register</h3>
+        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"><Link to="/register">Register</Link></h3>
       )}
 
       {/* if users logged in */}

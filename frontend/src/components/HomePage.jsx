@@ -1,4 +1,5 @@
 import React from "react";
+import DefaultImage from '../assets/deafult.jpg'
 
 const HomePage = ({post}) => {
   return (
@@ -6,8 +7,8 @@ const HomePage = ({post}) => {
       {/* {left} */}
       <div className="w-[25%] h-[170px] flex justify-center items-center sm:w-[40%] sm:h-[170px]">
       <img
-          src={post.photo} 
-          alt={post.title || "Image"}
+          src={post.photo || DefaultImage}
+          alt={"image"}
           className="h-full w-full object-cover"
         />
       </div>
@@ -19,12 +20,12 @@ const HomePage = ({post}) => {
         <div className="flex mb-2 text-sm font-semibold text-gray-500 items-center justify-between md:mb-4 ">
             <p>@{post.username}</p>
             <div className="flex space-x-2">
-                <p>13/12/2024</p>
-                <p>11:05</p>
+                <p>{new Date(post.updatedAt).toString().slice(0,15)}</p>
+                <p>{new Date(post.updatedAt).toString().slice(16,24)}</p>
             </div>
         </div>
         <p className="text-sm md:text-lg">
-            {post.description}
+            {post.description.slice(0,200)+"..."}
         </p>
       </div>
     </div>

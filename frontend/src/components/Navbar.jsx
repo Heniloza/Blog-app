@@ -1,5 +1,5 @@
 import React,{useContext, useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'
 import {FaBars} from 'react-icons/fa'
 import Menu from './Menu'
@@ -7,6 +7,13 @@ import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+  const [prompt,setPrompt] = useState();
+  const navigate = useNavigate()
+
+  const handleSearch = ()=>{
+      prompt? navigate("?search="+prompt):navigate("/")
+  };
+
   const showMenu = ()=>{
     setMenu(!menu);
   }
@@ -18,8 +25,8 @@ const Navbar = () => {
     <div className='flex items-center justify-between px-6 md:px-[200px] py-4 '>
         <h1 className='text-lg font-extrabold md:text-xl mr-5 md:mr-5'><Link to="/">Blog Adda</Link></h1>
         <div className='flex items-center justify-center space-x-8'>
-            <p><BsSearch /></p>
-            <input type="text" placeholder='Search a post' className='outline-none ox-3 py-2'/>
+            <p onClick={handleSearch} className='cursor-pointer'><BsSearch /></p>
+            <input onChange={(e)=> setPrompt(e.target.value)} type="text" placeholder='Search a post' className='outline-none ox-3 py-2'/>
         </div>
         <div className='hidden md:flex items-center justify-center space-x-4 md:space-x-8'>
             {user? <h3><Link to="/write">Write</Link></h3> : <h3><Link to="/login">login</Link></h3>}

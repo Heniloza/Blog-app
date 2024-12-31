@@ -1,5 +1,6 @@
 import React from "react";
-import DefaultImage from '../assets/deafult.jpg'
+import DefaultImage from '../assets/deafult.jpg';
+import {IMAGE} from '../url';
 
 const HomePage = ({post}) => {
   return (
@@ -7,7 +8,7 @@ const HomePage = ({post}) => {
       {/* {left} */}
       <div className="w-[25%] h-[170px] flex justify-center items-center sm:w-[40%] sm:h-[170px]">
       <img
-          src={post.photo || DefaultImage}
+          src={IMAGE+post.photo || DefaultImage}
           alt={"image"}
           className="h-full w-full object-cover"
         />

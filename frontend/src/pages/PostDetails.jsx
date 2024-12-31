@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 import Comment from "../components/Comment";
 import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
-import { URL } from "../url";
+import { URL, IMAGE } from "../url";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -39,8 +39,8 @@ const PostDetails = () => {
       <Navbar />
       {loader ? (
         <div className="h-[40vh] flex justify-center items-center">
-        <Loader />
-      </div>
+          <Loader />
+        </div>
       ) : (
         <div>
           <div className="px-8 md:px-[200px] mt-8">
@@ -68,10 +68,7 @@ const PostDetails = () => {
             </div>
           </div>
           <img
-            src={
-              post.photo ||
-              "https://www.fita.in/wp-content/uploads/2019/10/THE-IMPORTANCE-OF-ARTIFICIAL-INTELLIGENCE-IN-EVERY-DAY-LIFE.jpg"
-            }
+            src={IMAGE + post.photo}
             alt=""
             className="w-[70vw] h-[60vh] mx-auto mt-8"
           />

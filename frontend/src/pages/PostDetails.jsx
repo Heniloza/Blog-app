@@ -14,6 +14,8 @@ const PostDetails = () => {
   const postId = useParams().id;
   const [post, setPost] = useState({});
   const { user } = useContext(UserContext);
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
@@ -31,18 +33,52 @@ const PostDetails = () => {
       setLoader(false);
     }
   };
-  const handleDeletePost = async () =>{
+  const handleDeletePost = async () => {
     try {
-      await axios.delete(URL+"/api/posts/"+postId,{withCredentials:true})
-      navigate("/")
+      await axios.delete(URL + "/api/posts/" + postId, {
+        withCredentials: true,
+      });
+      navigate("/");
     } catch (error) {
       console.log(error);
-      
     }
-  }
+  };
 
+  const fetchComments = async () => {
+    try {
+      const res = await axios.get(URL + "/api/comments/post/" + postId);
+      setComments(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const postComment = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        URL + "/api/comments/create",
+        {
+          comment,
+          author: user.username,
+          postId,
+          userId: user._id,
+        },
+        { withCredentials: true }
+      );
+      setComment("");
+      fetchComments();
+      window.location.reload(true)
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     fetchPots();
+  }, [postId]);
+  useEffect(() => {
+    fetchComments();
+    postComment();
   }, [postId]);
 
   return (
@@ -61,7 +97,10 @@ const PostDetails = () => {
               </h1>
               {user?._id === post?.userId && (
                 <div className="flex items-center justify-center space-x-2">
-                  <p className="cursor-pointer" onClick={()=>navigate("/edit/"+postId)}>
+                  <p
+                    className="cursor-pointer"
+                    onClick={() => navigate("/edit/" + postId)}
+                  >
                     <BiEdit />
                   </p>
                   <p className="cursor-pointer" onClick={handleDeletePost}>
@@ -102,18 +141,22 @@ const PostDetails = () => {
           <div className="flex flex-col md:px-44 px-8">
             <h3 className="mt-6 mb-4 font-semibold ">Comments:</h3>
             {/* comments */}
-            <Comment />
-            <Comment />
-            <Comment />
+            {comments?.map((c, i) => (
+              <Comment key={c._id} c={c} post={post}/>
+            ))}
             <div>
               {/* write a comment */}
               <div className="w-full flex flex-col mt-4 md:flex-row">
                 <input
+                  onChange={(e) => setComment(e.target.value)}
                   type="text"
                   placeholder="Write a comment"
                   className="md:w-[80%] outline-none px-4 mt-4 md:mt-0"
                 />
-                <button className="bg-black text-white px-4 py-2 md:w-[20%] mt-4 md:mt-0">
+                <button
+                  onClick={postComment}
+                  className="bg-black text-white px-4 py-2 md:w-[20%] mt-4 md:mt-0"
+                >
                   Add Comment
                 </button>
               </div>

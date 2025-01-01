@@ -8,8 +8,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const EditPost = () => {
-  const {user} = useContext(UserContext)
-  const navigate = useNavigate()
+  const {user} = useContext(UserContext);
+  const navigate = useNavigate();
   //fetching posts
   const postId = useParams().id;
   const [title, setTitle] = useState("");

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import HomePage from "../components/HomePage";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 import axios from "axios";
 import { URL } from "../url";
 import { useLocation } from "react-router-dom";

@@ -1,6 +1,7 @@
 import express from "express";
 import POST from '../models/post.js'
 import verifyToken from "../verifyToken.js";
+import COMMENT from '../models/comment.js'
 
 const router = express.Router();
 
@@ -28,6 +29,7 @@ router.put("/:id",verifyToken,async(req,res)=>{
 router.delete("/:id",verifyToken,async(req,res)=>{
     try {
        await POST.findByIdAndDelete(req.params.id);
+       await COMMENT.deleteMany({postId:req.params.id})
        res.status(200).json("POST HAS BEEN DELTED");
     } catch (error) {
         res.status(500).json(error)

@@ -11,7 +11,6 @@ const Menu = () => {
   const handleLogout = async ()=>{
     try {
       const res = await axios.get(URL+"/api/auth/logout",{withCredentials:true});
-      
       setUser(null)
     } catch (error) {
       console.log(error);
@@ -30,13 +29,13 @@ const Menu = () => {
 
       {/* if users logged in */}
       {user && (
-        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">Profile</h3>
+        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"><Link to={`/profile/${user._id}`}>Profile</Link></h3>
       )}
       {user && (
-        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">Write</h3>
+        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"><Link to="/write">Write</Link></h3>
       )}
       {user && (
-        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">My Blogs</h3>
+        <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"><Link to={`/myblogs/${user._id}`}>my Blogs</Link></h3>
       )}
       {user && (
         <h3 onClick={handleLogout} className="text-white text-sm hover:text-gray-500 cursor-pointer">Logout</h3>

@@ -6,7 +6,7 @@ import { URL } from "../url";
 import { UserContext } from "../context/UserContext";
 
 const Comment = ({c,post}) => {
-  const {user} = useContext(UserContext)
+  const {user} = useContext(UserContext);
   const deleteComment = async (id)=>{
     try {
       await axios.delete(URL+"/api/comments/"+id,{withCredentials:true});
@@ -15,7 +15,6 @@ const Comment = ({c,post}) => {
       console.log(error);
     }
   }
-  
   return (
     <div className=" px-2 py-2 bg-green-200 rounded-lg mt-4">
       <div className="flex items-center justify-between">
@@ -25,6 +24,9 @@ const Comment = ({c,post}) => {
         <p>{new Date(c.updatedAt).toString().slice(16, 24)}</p>
         {user?._id === c.userId && (
             <div className="flex items-center justify-center space-x-2">
+            <p onClick={()=>handleUpdateComment(c._id)} className="cursor-pointer">
+              <BiEdit />
+            </p>
             <p onClick={()=>deleteComment(c._id)} className="cursor-pointer">
               <MdDelete />
             </p>
